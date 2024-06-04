@@ -1,19 +1,22 @@
 .Header {
   padding: 25px;
-  background-color: #172D13;
+  background-color: #172d13;
   color: #e9ece7;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
-.logo-text{
-    flex:1;
-    font-weight: 700;
-    font-size: 1.5rem;
-    text-align: center;
+.logo-text {
+  flex: 1;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .Nav {
@@ -24,8 +27,38 @@
   justify-content: space-around;
 }
 
-.btn{
+.btn {
   padding: 5px 9px;
-  background-color: #D76F30;
+  background-color: #d76f30;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .Header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo-text {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .Nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .Nav a,
+  .Nav .btn {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    width: auto;
+    align-self: center;
+  }
 }

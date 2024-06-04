@@ -18,11 +18,14 @@ import {
   InputGroup,
   InputRightElement,
   useToast,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 
 function Login() {
   const navigate = useNavigate();
   const toast = useToast();
+
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   const { storeTokenInLS, API } = useAuth();
 
@@ -148,9 +151,11 @@ function Login() {
           </Stack>
         </form>
       </Flex>
-      <Box className="logo" bg={colors[900]}>
-        <img src={"images/share-ease-trp.png"} alt="Not found"></img>
-      </Box>
+      {!isMobile && (
+        <Box className="logo" bg={colors[900]}>
+          <img src={"images/share-ease-trp.png"} alt="Not found"></img>
+        </Box>
+      )}
     </div>
   );
 }

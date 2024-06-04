@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const isLogedin = !!token;
 
   const API = import.meta.env.VITE_APP_URI_API;
+  const FR_API = import.meta.env.FR_API;
 
   const userAuthentication = async () => {
     try {
@@ -44,7 +45,15 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ storeTokenInLS, logoutUser, token, isLogedin, user, API }}
+      value={{
+        storeTokenInLS,
+        logoutUser,
+        token,
+        isLogedin,
+        user,
+        API,
+        FR_API,
+      }}
     >
       {children}
     </AuthContext.Provider>

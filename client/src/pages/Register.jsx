@@ -16,6 +16,7 @@ import {
   InputGroup,
   InputRightElement,
   useToast,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useAuth } from "../../store/auth";
 
@@ -24,6 +25,8 @@ import { useAuth } from "../../store/auth";
 function Register() {
   const navigate = useNavigate();
   const toast = useToast();
+
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   const [registraionDetails, setRegistraionDetails] = useState({
     email: "",
@@ -179,9 +182,11 @@ function Register() {
           </Stack>
         </form>
       </Flex>
-      <Box className="logo" bg={colors[900]}>
-        <img src={"images/share-ease-trp.png"} alt="Not found"></img>
-      </Box>
+      {!isMobile && (
+        <Box className="logo" bg={colors[900]}>
+          <img src={"images/share-ease-trp.png"} alt="Not found"></img>
+        </Box>
+      )}
     </div>
   );
 }

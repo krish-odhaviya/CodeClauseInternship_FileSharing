@@ -23,7 +23,7 @@ import { useAuth } from "../../../store/auth";
 import { useNavigate } from "react-router-dom";
 
 const FileUpload = () => {
-  const { user, API } = useAuth();
+  const { user, API, FR_API } = useAuth();
   const tomorrow = format(addDays(new Date(), 1), "yyyy-MM-dd");
   const afterweek = format(addDays(new Date(), 7), "yyyy-MM-dd");
 
@@ -66,11 +66,11 @@ const FileUpload = () => {
         });
 
         setIsOpen((value) => !value);
-        const link = window.location.href;
-        const newLink = link.replace("home", "view");
-        setLink(`${newLink}/${res.data.fileId}`);
+
+        setLink(`${FR_API}/view/${res.data.fileId}`);
 
         setIsPopupModal(true);
+        
       } catch (error) {
         console.log(error);
       }
@@ -186,13 +186,18 @@ const FileUpload = () => {
           setIsPopupModal((value) => {
             return !value;
           });
+          window.location.reload();
         }}
         isOpen={isPopupModal}
         isCentered
       >
         <ModalOverlay />
 
-        <ModalContent>
+        <ModalContent
+          onClose={() => {
+            window.location.reload();
+          }}
+        >
           <ModalHeader>Share File Link</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
