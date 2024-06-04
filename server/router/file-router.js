@@ -22,5 +22,6 @@ router.route("/upload").post(upload.single("file"), fileController.upload);
 
 router.route("/view/:fileId").get(fileController.view);
 router.route("/view-all/:email").get(fileController.viewAll);
+router.route("/delete").post(fileController.deleteFile);
 router.route("/download").get(fileController.download);
 module.exports = router;
