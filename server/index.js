@@ -13,10 +13,10 @@ const connectDB = require("./utils/db");
 
 const errorMiddleware = require("./middlewares/error-middleware");
 
-const cors_url = process.env.CORS_URL;
+const cors_url = process.env.CORS_URL  || "http://localhost:5173";
 
 const corsOptions = {
-  origin: `${cors_url}`, // Allow requests from this origin
+  origin: cors_url, // Allow requests from this origin
   methods: "GET,POST,OPTIONS,PUT,DELETE,PATCH,TRACE,CONNECT",
   allowedHeaders: "Content-Type, Authorization",
   optionsSuccessStatus: 200, // For legacy browser support
