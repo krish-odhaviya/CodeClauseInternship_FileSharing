@@ -16,12 +16,15 @@ const errorMiddleware = require("./middlewares/error-middleware");
 const cors_url = process.env.CORS_URL;
 
 const corsOptions = {
-  origin: cors_url,
-  methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
-  credentials: true,
+  origin: `${cors_url}`, // Allow requests from this origin
+  methods: "GET,POST,OPTIONS,PUT,DELETE,PATCH,TRACE,CONNECT",
+  allowedHeaders: "Content-Type, Authorization",
+  optionsSuccessStatus: 200, // For legacy browser support
 };
 
-app.use("*", cors(corsOptions));
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+console.log("cors job : " + cors_url);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
