@@ -13,7 +13,7 @@ const connectDB = require("./utils/db");
 
 const errorMiddleware = require("./middlewares/error-middleware");
 
-const cors_url = process.env.CORS_URL  || "http://localhost:5173";
+const cors_url = process.env.CORS_URL || "http://localhost:5173";
 
 const corsOptions = {
   origin: cors_url, // Allow requests from this origin
@@ -23,8 +23,15 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
-
+app.options("*", (req, res) => {
+  res.set({
+    "Access-Control-Allow-Origin": cors_url,
+    "Access-Control-Allow-Methods": "GET,POST,OPTIONS,PUT,DELETE,PATCH",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Credentials": "true",
+  });
+  res.sendStatus(200);
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
