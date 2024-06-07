@@ -24,7 +24,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
-console.log("cors job : " + cors_url);
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
