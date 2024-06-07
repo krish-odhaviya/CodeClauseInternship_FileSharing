@@ -25,7 +25,7 @@ import {
 import { useAuth } from "../../../store/auth";
 
 function ViewUploads({ email }) {
-  const { API, FR_API } = useAuth();
+  const { API, URL } = useAuth();
   const toast = useToast();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

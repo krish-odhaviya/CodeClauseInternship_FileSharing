@@ -23,7 +23,7 @@ import { useAuth } from "../../../store/auth";
 import { useNavigate } from "react-router-dom";
 
 const FileUpload = () => {
-  const { user, API, FR_API } = useAuth();
+  const { user, API, URL } = useAuth();
   const tomorrow = format(addDays(new Date(), 1), "yyyy-MM-dd");
   const afterweek = format(addDays(new Date(), 7), "yyyy-MM-dd");
 
@@ -67,10 +67,9 @@ const FileUpload = () => {
 
         setIsOpen((value) => !value);
 
-        setLink(`${FR_API}/view/${res.data.fileId}`);
+        setLink(`/view/${res.data.fileId}`);
 
         setIsPopupModal(true);
-        
       } catch (error) {
         console.log(error);
       }
@@ -201,7 +200,10 @@ const FileUpload = () => {
           <ModalHeader>Share File Link</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <h2 color={"green"}>{link}</h2>
+            <h2 color={"green"}>
+              {URL}
+              {link}
+            </h2>
           </ModalBody>
           <ModalFooter>
             <RWebShare

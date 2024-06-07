@@ -13,8 +13,10 @@ const connectDB = require("./utils/db");
 
 const errorMiddleware = require("./middlewares/error-middleware");
 
+const cors_url = process.env.CORS_URL;
+
 const corsOptions = {
-  origin: process.env.CORS_URL,
+  origin: cors_url,
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials: true,
 };
@@ -25,6 +27,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Routes
+app.get("/", (req, res) => {
+  res.send("server is in running state :)");
+});
 app.use("/api/auth", authRouter);
 app.use("/api", fileRouter);
 
